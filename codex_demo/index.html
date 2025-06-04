@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenAI Codex 使用指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        #result { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+<div class="container my-4">
+    <h1 class="mb-4">OpenAI Codex 简介</h1>
+    <p>OpenAI Codex 能够根据自然语言指令生成代码。下面通过简单的交互式示例展示它的典型用法。</p>
+    <div class="form-group">
+        <label for="promptInput">输入指令示例：</label>
+        <textarea id="promptInput" class="form-control" rows="4" placeholder="例如：写一个返回斐波那契数列的 Python 函数"></textarea>
+    </div>
+    <button id="generateBtn" class="btn btn-primary">显示示例结果</button>
+    <h5 class="mt-4">Codex 输出示例：</h5>
+    <pre id="result" class="bg-white p-3 border rounded"></pre>
+</div>
+<script>
+const examples = {
+    "写一个返回斐波那契数列的 Python 函数": `def fibonacci(n):\n    seq = [0, 1]\n    for i in range(2, n):\n        seq.append(seq[i-1] + seq[i-2])\n    return seq[:n]`,
+    "将列表中的字符串转换为大写": `items = ["apple", "banana", "pear"]\nupper = [item.upper() for item in items]\nprint(upper)`
+};
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+    const prompt = document.getElementById('promptInput').value.trim();
+    const output = examples[prompt] || '（此示例仅展示静态结果，实际使用 Codex 可获得更多样的代码）';
+    document.getElementById('result').textContent = output;
+});
+</script>
+</body>
+</html>
